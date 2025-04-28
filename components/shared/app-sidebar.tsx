@@ -10,8 +10,12 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import {
@@ -27,6 +31,9 @@ import {
   ChevronDown,
   HelpCircle,
   Contact,
+  UserCircle2,
+  UserCheck,
+  Settings2,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -105,6 +112,9 @@ export default function AppSidebar() {
                       <span className='text-sm font-medium'>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
+                  {item.title === 'Inbox' && (
+                    <SidebarMenuBadge>15</SidebarMenuBadge>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -172,6 +182,40 @@ export default function AppSidebar() {
             </CollapsibleContent>
           </SidebarGroup>
         </Collapsible>
+        <SidebarGroup>
+          {/* Nested */}
+          <SidebarGroupLabel>Settings</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href='#' className='flex items-center gap-2'>
+                    <UserCircle2 />
+                    <span className='text-sm font-medium'>Users</span>
+                  </Link>
+                </SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton asChild>
+                      <Link href='#' className='flex items-center gap-2'>
+                        <UserCheck />
+                        <span className='text-sm font-medium'>Profile</span>
+                      </Link>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton asChild>
+                      <Link href='#' className='flex items-center gap-2'>
+                        <Settings2 />
+                        <span className='text-sm font-medium'>Preferences</span>
+                      </Link>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
