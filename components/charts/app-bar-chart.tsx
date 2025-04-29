@@ -4,6 +4,8 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import {
   type ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart';
@@ -15,7 +17,7 @@ const chartConfig = {
   },
   mobile: {
     label: 'Mobile',
-    color: '#60a5fa',
+    color: '#b321e3',
   },
 } satisfies ChartConfig;
 
@@ -44,6 +46,7 @@ export default function AppBarChart() {
           />
           <YAxis tickLine={false} tickMargin={10} axisLine={false} />
           <ChartTooltip content={<ChartTooltipContent />} />
+           <ChartLegend content={<ChartLegendContent />} />
           <Bar dataKey='desktop' fill='var(--color-desktop)' radius={4} />
           <Bar dataKey='mobile' fill='var(--color-mobile)' radius={4} />
         </BarChart>
