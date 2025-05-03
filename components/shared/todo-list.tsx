@@ -1,11 +1,45 @@
+'use client';
+
+import { useState } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '../ui/label';
+import { Label } from '@/components/ui/label';
+import { Calendar } from '@/components/ui/calendar';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { CalendarIcon } from 'lucide-react';
 
 export default function TodoList() {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [open, setOpen] = useState(false);
   return (
     <div className=''>
+      {/* Calendar */}
+      <h1 className='text-lg font-medium mb-4'>Todo List</h1>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button className='w-full justify-start text-left'>
+            <CalendarIcon />
+            {date ? date.toDateString() : <span>Select date</span>}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className='w-auto p-0'>
+          <Calendar
+            mode='single'
+            selected={date}
+            onSelect={(date) => {
+              setDate(date);
+              setOpen(false);
+            }}
+          />
+        </PopoverContent>
+      </Popover>
+
       <ScrollArea className='max-h-[400px] mt-4 overflow-y-auto'>
         <div className='flex flex-col gap-2'>
           <Card className='p-4'>
