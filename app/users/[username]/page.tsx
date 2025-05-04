@@ -19,6 +19,9 @@ import {
 import { BadgeCheck, Candy, Citrus, Shield } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import { Sheet, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import EditUserForm from '@/components/edit-user-form';
 
 export default function SingleUserPage() {
   const { username } = useParams(); // Extract the username from the URL
@@ -114,7 +117,18 @@ export default function SingleUserPage() {
             </div>
           </div>
           <div className='bg-primary-foreground p-4 rounded-lg'>
-            <h2 className='text-lg font-medium mb-4'>User Information</h2>
+            <div className='flex items-center justify-between'>
+              <h2 className='text-lg font-medium'>User Information</h2>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button size='sm' className='cursor-pointer'>
+                    Edit User
+                  </Button>
+                </SheetTrigger>
+                <EditUserForm />
+              </Sheet>
+            </div>
+
             <div className='space-y-2 mt-4'>
               <div className='flex flex-col gap-2 mb-8'>
                 <p className='text-sm text-muted-foreground'>
