@@ -19,6 +19,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 
 const formSchema = z.object({
   username: z
@@ -56,7 +64,7 @@ export default function EditUserForm() {
     <SheetContent>
       <SheetHeader>
         <SheetTitle className='mb-4'>Edit User</SheetTitle>
-        <SheetDescription>
+        <SheetDescription asChild>
           <Form {...form}>
             <form className='space-y-8'>
               <FormField
@@ -115,10 +123,18 @@ export default function EditUserForm() {
                 control={form.control}
                 name='role'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='w-full'>
                     <FormLabel>Role</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Select>
+                        <SelectTrigger className='w-full'>
+                          <SelectValue placeholder='Role' />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value='admin'>Admin</SelectItem>
+                          <SelectItem value='user'>User</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormControl>
                     <FormDescription>
                       Only verified users can be assigned as admins.
@@ -127,6 +143,7 @@ export default function EditUserForm() {
                   </FormItem>
                 )}
               />
+              <Button type='submit'>Save changes</Button>
             </form>
           </Form>
         </SheetDescription>

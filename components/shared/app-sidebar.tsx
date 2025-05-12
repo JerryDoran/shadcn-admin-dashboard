@@ -25,7 +25,6 @@ import {
   Search,
   Settings,
   User2,
-  ChevronUp,
   Plus,
   Projector,
   ChevronDown,

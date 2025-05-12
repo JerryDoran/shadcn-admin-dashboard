@@ -11,15 +11,31 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
   return (
-    <nav className='flex p-4 items-center justify-between'>
+    <nav className='flex p-3.5 items-center justify-between sticky top-0 bg-background/90 border-b border-border z-10 '>
       {/* Left */}
       <SidebarTrigger />
       {/* Right */}
       <div className='flex items-center gap-4'>
-        <Link href='/'>Dashboard</Link>
+        <Link href='/' className='text-small'>
+          <Button
+            variant='outline'
+            className='text-small uppercase cursor-pointer'
+          >
+            Dashboard
+          </Button>
+        </Link>
+        <Link href='/payments' className='text-small'>
+          <Button
+            variant='outline'
+            className='text-small uppercase cursor-pointer'
+          >
+            Payments
+          </Button>
+        </Link>
         <ThemeToggle />
 
         {/* User Menu */}
@@ -34,8 +50,10 @@ export default function Navbar() {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <User className='size-4 mr-1' />
-              Profile
+              <Link href='/users/jdoe' className='flex items-center gap-2'>
+                <User className='size-4 mr-1' />
+                Profile
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Settings className='size-4 mr-1' />
